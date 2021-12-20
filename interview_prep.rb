@@ -73,7 +73,7 @@ end
 class Bird
   include Definable
   
-  def initialize(flyable)
+  def initialize(flyable:)
     @flyable = flyable
   end
 end
@@ -1449,5 +1449,122 @@ When might it make sense to format the data or prevent destructive method calls 
 
 Any time you want to control how the user is able to access or change data - getters and setters protect the raw data
 
+
+=end
+
+
+# note : sample interview
+
+=begin
+
+
+
+what is polymorphism? example?
+
+what are the two types of polymorphism? Example?
+
+Why is polymorphism important? example?
+
+What is self in ruby? How does self change depending on its scope? Examples?
+
+How does multiple inheritance work in ruby? example?
+
+class inhertance vs interface inheritance. examples?
+
+
+
+module Swimmable
+  def enable_swimming
+    @can_swim = true
+  end
+end
+
+class Dog
+  include Swimmable
+
+  def swim
+    "swimming!" if @can_swim
+  end
+end
+
+teddy = Dog.new
+puts teddy.swim   
+
+
+why doesn't it print 'swimming!'?
+how would we fix this so it prints 'swimming!'
+
+
+module Definable
+  def what_am_i
+    "I am a #{bird_type} and I #{can/cant} fly."
+  end
+  
+  def self.some_method
+    'something...'
+  end
+end
+
+class Bird
+  include Definable
+  
+  def initialize(name)
+    @name = name
+  end
+  
+  def self.family
+    self
+  end
+  
+end
+
+class Penguin < Bird
+  
+  def name
+    "My name is #{name} and I am a #{penny.class}."
+  end
+  
+end
+
+class Hawk < Bird
+end
+
+penny = Penguin.new('Penny')
+hawky = Hawk.new('Hawky')
+
+penny == hawky #=> false
+
+penny.same_family?(hawky) #=> true
+
+p penny.what_am_i #=> "I am a Penguin and I can't fly"
+p hawky.what_am_i #=> "I am a Hawk and I can fly"
+
+p penny.name #=> "My name is Penny and I am a pengiun."
+p hawky.name #=> "My name is Hawky and I am a hawk."
+
+
+
+module Definable
+ 
+end
+
+class Bird
+  include Definable
+  
+  def initialize(name)
+    @name = name
+  end
+
+end
+
+class Penguin < Bird
+ 
+end
+
+class Hawk < Bird
+end
+
+penny = Penguin.new('Penny')
+hawky = Hawk.new('Hawky')
 
 =end
